@@ -1,4 +1,4 @@
-import { Form } from "react-router"
+import { Form, useNavigate } from "react-router"
 
 import Input from "./Input"
 import Textarea from "./TextArea"
@@ -20,29 +20,29 @@ export default function CakeForm({ cake = {}, errors = {} }) {
                 error={errors.title}
                 defaultValue={cake.title}
             />
-            <Textarea
-                label="Text: *"
+            <Input
+                label="Flavor: *"
                 name="text"
                 placeholder="Bitte Kuchengeschmack eingeben"
                 error={errors.text}
                 defaultValue={cake.flavor}
             />
-            <Textarea
-                label="Text: *"
+            <Input
+                label="Preis: *"
                 name="text"
                 placeholder="Bitte Kuchenpreis eingeben"
                 error={errors.text}
                 defaultValue={cake.price}
             />
             <Textarea
-                label="Text: *"
+                label="Description: *"
                 name="text"
                 placeholder="Bitte Kuchen Beschreibung eingeben"
                 error={errors.text}
                 defaultValue={cake.description}
             />
             <ButtonGroup>
-                <Button type="submit">Speichern</Button>
+                <Button onClick="submit">Speichern</Button>
                 <Button type="button" secondary={true} onClick={goBack}>
                     Abbrechen
                 </Button>
