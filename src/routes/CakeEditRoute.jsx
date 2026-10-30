@@ -1,6 +1,7 @@
-import { redirect, useLoaderData } from "react-router"
+import { redirect, useActionData, useLoaderData } from "react-router"
 import CakeForm from "@/components/CakeForm"
 import { fetchCakeByIDd, updateCake } from "@/lib/fetchCakes"
+import { validateCake } from "@/lib/validateCake"
 
 async function clientLoader({ params }) {
     return await fetchCakeByIDd(params.id)
@@ -10,6 +11,10 @@ async function clientLoader({ params }) {
 async function clientAction({ request, params }) {
     const formData = await request.formData()
     const cake = Object.fromEntries(formData)
+    const { errors, isValid } = validateCake(cake)
+    if (!isValid) {
+        return errors
+    }
     cake.id = params.id
 
     try {
@@ -23,10 +28,11 @@ async function clientAction({ request, params }) {
 
 export default function CakeEditRoute() {
     const data = useLoaderData()
+    const errors = useActionData()
     return (
         <>
             <h2>Kuchen Bearbeiten:</h2>
-            <CakeForm cake={data} />
+            <CakeForm cake={data} errors={errors} />
         </>
     )
 }
