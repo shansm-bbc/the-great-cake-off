@@ -26,6 +26,7 @@ const router = createBrowserRouter([
                 path: "/cakes/:id",
                 element: <CakeDeteilRoute />,
                 loader: CakeDeteilRoute.loader,
+                action: CakeDeteilRoute.action,
             },
             {
                 path: "/cakes/create",

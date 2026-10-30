@@ -18,14 +18,14 @@ export async function fetchCakeByIDd(id) {
     return data
 }
 
-export async function createCake(chronicle) {
+export async function createCake(cake) {
     const response = await fetch("http://localhost:8080/cakes", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             authorization: `Bearer ${getJWTToken()}`,
         },
-        body: JSON.stringify(chronicle),
+        body: JSON.stringify(cake),
     })
     if (!response.ok) {
         throw new Error(`HTTP Error: status ${response.status}`)
@@ -34,14 +34,14 @@ export async function createCake(chronicle) {
     return data
 }
 
-export async function updateCake(chronicle) {
-    const response = await fetch(`http://localhost:8080/cakes/${chronicle.id}`, {
+export async function updateCake(cake) {
+    const response = await fetch(`http://localhost:8080/cakes/${cake.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
             authorization: `Bearer ${getJWTToken()}`,
         },
-        body: JSON.stringify(chronicle),
+        body: JSON.stringify(cake),
     })
     if (!response.ok) {
         throw new Error(`HTTP Error: status ${response.status}`)
@@ -60,4 +60,21 @@ export async function deleteCake(id) {
     if (!response.ok) {
         throw new Error(`HTTP Error: status ${response.status}`)
     }
+}
+
+export async function createComment(id, comment) {
+    const commentText = comment.comment
+    const response = await fetch(`http://localhost:8080/comments/cake/${id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${getJWTToken()}`,
+        },
+        body: JSON.stringify({ commentText: commentText }),
+    })
+    if (!response.ok) {
+        throw new Error(`HTTP Error: status ${response.status}`)
+    }
+    const data = response.json()
+    return data
 }

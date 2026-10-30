@@ -26,7 +26,7 @@ export default function Header() {
             <ButtonGroup>
                 {user && (
                     <LinkButton to="/cakes/create" secondary>
-                        Neue Kuchen erstellen
+                        Neuer Kuchen erstellen
                     </LinkButton>
                 )}
                 {user ? (

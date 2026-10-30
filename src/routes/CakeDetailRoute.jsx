@@ -1,17 +1,36 @@
-import { fetchCakeByIDd, deleteCake as deleteCake } from "@/lib/fetchCakes"
+import { fetchCakeByIDd, deleteCake as deleteCake, createComment } from "@/lib/fetchCakes"
 import LinkButton from "@/components/LinkButton"
-import { useLoaderData, useNavigate, useParams } from "react-router"
+import { redirect, useActionData, useLoaderData, useNavigate, useParams } from "react-router"
 import ButtonGroup from "@/components/ButtonGroup"
+import CommentForm from "@/components/CommentForm"
+import { useCurrentUser } from "@/lib/session"
+import { validateComment } from "@/lib/validateComment"
+import Button from "@/components/Button"
 
 async function clientLoader({ params }) {
-    return await fetchCakeByIDd(params.id)
+    const data = await fetchCakeByIDd(params.id)
+    console.log("Data:" + data)
+    return data
+}
+
+async function clientAction({ request, params }) {
+    const formData = await request.formData()
+    const comment = Object.fromEntries(formData)
+    const { errors, isValid } = validateComment(comment)
+    if (!isValid) {
+        return errors
+    }
+    await createComment(params.id, comment)
+    return redirect(`/cakes/${params.id}`)
 }
 
 export default function CakeDeteilRoute() {
     const params = useParams()
     const data = useLoaderData()
+    const user = useCurrentUser()
     console.log(data)
     const navigate = useNavigate()
+    const errors = useActionData()
 
     const removeCake = async () => {
         if (confirm("Soll ich den Kuchen wirklich löschen?")) {
@@ -45,17 +64,35 @@ export default function CakeDeteilRoute() {
                 ) : (
                     <p>There are no comments about this cake</p>
                 )}
+                <br />
+                {user && (
+                    <>
+                        <h2>Create / Add Comment:</h2>
+                        <CommentForm errors={errors} />
+                    </>
+                )}
             </div>
+            <br />
             <ButtonGroup>
                 <LinkButton to={"/"} children={"Zurück"} secondary={true} />
-                <LinkButton
-                    to={`/cakes/${params.id}/edit`}
-                    children={"Bearbeiten"}
-                    secondary={true}
-                />
+                {data?.baker.id === user?.id ? (
+                    <>
+                        <LinkButton
+                            to={`/cakes/${params.id}/edit`}
+                            children={"Bearbeiten"}
+                            secondary={true}
+                        />
+                        <Button danger={true} onClick={removeCake}>
+                            Löschen
+                        </Button>
+                    </>
+                ) : (
+                    ""
+                )}
             </ButtonGroup>
         </>
     )
 }
 
 CakeDeteilRoute.loader = clientLoader
+CakeDeteilRoute.action = clientAction
