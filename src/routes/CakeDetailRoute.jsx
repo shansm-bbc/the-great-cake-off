@@ -54,9 +54,6 @@ export default function CakeDeteilRoute() {
                     children={"Bearbeiten"}
                     secondary={true}
                 />
-                <Button danger={true} onClick={removeCake}>
-                    Löschen
-                </Button>
             </ButtonGroup>
         </>
     )

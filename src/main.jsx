@@ -9,6 +9,8 @@ import ProtectedRoute from "./routes/ProtectedRoute"
 import CakeCreateRoute from "./routes/CakeCreateRoute"
 import SignInRoute from "./routes/SignInRoute"
 import SignUpRoute from "./routes/SignUpRoute"
+import CakeEditRoute from "./routes/CakeEditRoute"
+import ProtectedRouteEdit from "./routes/ProtectedRouteEdit"
 
 const router = createBrowserRouter([
     {
@@ -44,6 +46,16 @@ const router = createBrowserRouter([
                 path: "/auth/signup",
                 element: <SignUpRoute />,
                 action: SignUpRoute.action,
+            },
+            {
+                path: "/cakes/:id/edit",
+                element: (
+                    <ProtectedRouteEdit>
+                        <CakeEditRoute />
+                    </ProtectedRouteEdit>
+                ),
+                loader: CakeEditRoute.loader,
+                action: CakeEditRoute.action,
             },
         ],
     },
