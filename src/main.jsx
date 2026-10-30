@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider  } from 'react-router'
+import CakeListRoute from './routes/CakeListRoute'
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
     children: [
             {
                 index: true,
-                element: <div>Hallo Welt</div>
+                element: <CakeListRoute />,
             },
         ],
   }
