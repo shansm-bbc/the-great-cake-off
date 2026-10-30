@@ -14,8 +14,14 @@ async function clientAction({ request }) {
         return errors
     }
 
-    const response = await signin(user)
-    saveSession(response)
+    try {
+        const response = await signin(user)
+        saveSession(response)
+    } catch {
+        return {
+            general: "E-Mail-Adresse oder Passwort ist falsch.",
+        }
+    }
     const param = new URLSearchParams(location.search)
     const path = param.get("path")
     return redirect(path ?? "/")

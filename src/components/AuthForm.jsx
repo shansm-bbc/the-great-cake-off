@@ -13,6 +13,11 @@ export default function AuthForm({ errors = {} }) {
     return (
         <>
             <Form className={styles.authform} method="post" noValidate>
+                {errors.general && (
+                    <p className={styles.error} role="alert">
+                        {errors.general}
+                    </p>
+                )}
                 <label htmlFor="email">E-Mail:</label>
                 <Input
                     id="email"

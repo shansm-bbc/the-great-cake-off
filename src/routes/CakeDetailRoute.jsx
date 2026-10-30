@@ -56,7 +56,7 @@ export default function CakeDeteilRoute() {
             <div className="">
                 {data.comments ? (
                     data.comments.map((comment) => (
-                        <p>
+                        <p key={comment.id}>
                             {comment.author.firstname} {comment.author.lastname}:{" "}
                             {comment.commentText}
                         </p>
