@@ -1,13 +1,15 @@
-import { useState } from 'react'
-import { Outlet } from "react-router";
-import './App.css'
+import { useState } from "react"
+import { Outlet } from "react-router"
+import styles from "./App.module.css"
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0)
 
-  return (
-    <Outlet />
-  )
+    return (
+        <main className={styles.main}>
+            <Outlet />
+        </main>
+    )
 }
 
 export default App

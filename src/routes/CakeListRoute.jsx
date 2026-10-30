@@ -1,13 +1,28 @@
-import { fetchCakes } from "@/lib/fetchCakes";
+import { fetchCakes } from "@/lib/fetchCakes"
+import Card from "@/components/Card"
+import { useLoaderData } from "react-router"
 
 async function clientLoader() {
-  return await fetchCakes();
+    return await fetchCakes()
 }
 
 export default function CakeListRoute() {
-  return (
-    <div>CakeList</div>
-  );
+    const data = useLoaderData()
+    console.log(data)
+    return (
+        <div className="">
+            {data.map((cake) => (
+                <Card
+                    key={cake.id}
+                    name={cake.name}
+                    description={cake.text}
+                    price={cake.price}
+                    baker={cake.baker}
+                    url={`/cakes/${cake.id}`}
+                />
+            ))}
+        </div>
+    )
 }
 
-CakeListRoute.loader = clientLoader;
+CakeListRoute.loader = clientLoader
