@@ -22,21 +22,21 @@ export default function CakeForm({ cake = {}, errors = {} }) {
             />
             <Input
                 label="Flavor: *"
-                name="text"
+                name="flavor"
                 placeholder="Bitte Kuchengeschmack eingeben"
                 error={errors.text}
                 defaultValue={cake.flavor}
             />
             <Input
                 label="Preis: *"
-                name="text"
+                name="price"
                 placeholder="Bitte Kuchenpreis eingeben"
                 error={errors.text}
                 defaultValue={cake.price}
             />
             <Textarea
                 label="Description: *"
-                name="text"
+                name="description"
                 placeholder="Bitte Kuchen Beschreibung eingeben"
                 error={errors.text}
                 defaultValue={cake.description}
