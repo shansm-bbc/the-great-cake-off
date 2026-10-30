@@ -50,7 +50,7 @@ export default function CakeDeteilRoute() {
             <ButtonGroup>
                 <LinkButton to={"/"} children={"Zurück"} secondary={true} />
                 <LinkButton
-                    to={`/chronicles/${params.id}/edit`}
+                    to={`/cakes/${params.id}/edit`}
                     children={"Bearbeiten"}
                     secondary={true}
                 />
