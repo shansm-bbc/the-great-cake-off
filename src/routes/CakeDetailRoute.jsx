@@ -11,6 +11,7 @@ async function clientLoader({ params }) {
 export default function CakeDeteilRoute() {
     const params = useParams()
     const data = useLoaderData()
+    console.log(data)
     const navigate = useNavigate()
 
     const removeCake = async () => {
@@ -27,9 +28,25 @@ export default function CakeDeteilRoute() {
 
     return (
         <>
-            <h2>{data.title}</h2>
-            <p>{data.text}</p>
+            <h2>{data.name}</h2>
+            <p>Flavor: {data.flavor}</p>
+            <p>Preis: {data.price} CHF</p>
+            <p></p>
+            <p>Description: {data.description}</p>
             <br />
+            <h2>Comments:</h2>
+            <div className="">
+                {data.comments ? (
+                    data.comments.map((comment) => (
+                        <p>
+                            {comment.author.firstname} {comment.author.lastname}:{" "}
+                            {comment.commentText}
+                        </p>
+                    ))
+                ) : (
+                    <p>There are no comments about this cake</p>
+                )}
+            </div>
             <ButtonGroup>
                 <LinkButton to={"/"} children={"Zurück"} secondary={true} />
                 <LinkButton
