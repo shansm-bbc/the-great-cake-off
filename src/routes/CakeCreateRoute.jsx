@@ -10,7 +10,6 @@ async function clientAction({ request }) {
     if (!isValid) {
         return errors
     }
-    console.log(cake)
     await createCake(cake)
     return redirect("/")
 }
