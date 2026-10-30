@@ -1,5 +1,3 @@
-const URL = "http://localhost:8080"
-
 import { getJWTToken } from "./session"
 
 export async function fetchCakes() {

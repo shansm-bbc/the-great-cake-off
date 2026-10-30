@@ -1,4 +1,4 @@
-import { redirect, useLoaderData, useNavigate } from "react-router"
+import { redirect, useLoaderData } from "react-router"
 import CakeForm from "@/components/CakeForm"
 import { fetchCakeByIDd, updateCake } from "@/lib/fetchCakes"
 
@@ -17,7 +17,7 @@ async function clientAction({ request, params }) {
         return redirect(`/cakes/${params.id}`)
     } catch (error) {
         console.log(error)
-        throw new Error("Der Kuchen konnte nicht gespeichert werden.")
+        throw new Error("Der Kuchen konnte nicht gespeichert werden.", { cause: error })
     }
 }
 

@@ -2,7 +2,6 @@ import { fetchCakeByIDd, deleteCake as deleteCake } from "@/lib/fetchCakes"
 import LinkButton from "@/components/LinkButton"
 import { useLoaderData, useNavigate, useParams } from "react-router"
 import ButtonGroup from "@/components/ButtonGroup"
-import Button from "@/components/Button"
 
 async function clientLoader({ params }) {
     return await fetchCakeByIDd(params.id)
