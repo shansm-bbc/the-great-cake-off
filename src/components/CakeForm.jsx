@@ -15,34 +15,34 @@ export default function CakeForm({ cake = {}, errors = {} }) {
             <Input
                 label="Titel: *"
                 type="text"
-                name="title"
+                name="name"
                 placeholder="Bitte Kuchennamen eingeben"
-                error={errors.title}
-                defaultValue={cake.title}
+                error={errors.name}
+                defaultValue={cake.name}
             />
             <Input
                 label="Flavor: *"
                 name="flavor"
                 placeholder="Bitte Kuchengeschmack eingeben"
-                error={errors.text}
+                error={errors.flavor}
                 defaultValue={cake.flavor}
             />
             <Input
                 label="Preis: *"
                 name="price"
                 placeholder="Bitte Kuchenpreis eingeben"
-                error={errors.text}
+                error={errors.price}
                 defaultValue={cake.price}
             />
             <Textarea
                 label="Description: *"
                 name="description"
                 placeholder="Bitte Kuchen Beschreibung eingeben"
-                error={errors.text}
+                error={errors.description}
                 defaultValue={cake.description}
             />
             <ButtonGroup>
-                <Button onClick="submit">Speichern</Button>
+                <Button type="submit">Speichern</Button>
                 <Button type="button" secondary={true} onClick={goBack}>
                     Abbrechen
                 </Button>
