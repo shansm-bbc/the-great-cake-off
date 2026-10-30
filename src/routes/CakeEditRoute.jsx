@@ -6,6 +6,7 @@ async function clientLoader({ params }) {
     return await fetchCakeByIDd(params.id)
 }
 
+// Holt sich die Daten aus dem Formular und erstetzt die Daten mit den Vorhandenen
 async function clientAction({ request, params }) {
     const formData = await request.formData()
     const cake = Object.fromEntries(formData)
@@ -13,7 +14,6 @@ async function clientAction({ request, params }) {
 
     try {
         await updateCake(cake)
-
         return redirect(`/cakes/${params.id}`)
     } catch (error) {
         console.log(error)
@@ -23,7 +23,6 @@ async function clientAction({ request, params }) {
 
 export default function CakeEditRoute() {
     const data = useLoaderData()
-    const navigate = useNavigate()
     return (
         <>
             <h2>Kuchen Bearbeiten:</h2>

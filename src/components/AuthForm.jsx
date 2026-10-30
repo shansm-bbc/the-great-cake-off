@@ -3,7 +3,6 @@ import styles from "./AuthForm.module.css"
 import Button from "./Button"
 import ButtonGroup from "./ButtonGroup"
 import Input from "./Input"
-import { signin } from "@/lib/signin"
 
 export default function AuthForm({ errors = {} }) {
     const navigate = useNavigate()

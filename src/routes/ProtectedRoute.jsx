@@ -8,6 +8,7 @@ export default function ProtectedRoute({ children }) {
     const navigate = useNavigate()
     const location = useLocation()
 
+    // Überprüft ob User eingeloggt ist. Falls nicht wird er auf SignIn Page geleitet.
     useEffect(() => {
         if (!user) {
             const path = location.pathname

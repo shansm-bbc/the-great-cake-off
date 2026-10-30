@@ -12,12 +12,14 @@ export default function ProtectedRouteEdit({ children }) {
     const [cake, setCake] = useState(null)
     const [error, setError] = useState(null)
 
+    // Überprüft ob User eingeloggt ist. Falls nicht wird er auf SignIn Page geleitet.
     useEffect(() => {
         if (!user) {
             navigate(`/auth/signin?path=${path}`)
         }
     }, [user, navigate, location.pathname])
 
+    // Versucht den Cake zu fetchen. Falls das nicht geht wird eine Error Meldung erzeugt.
     useEffect(() => {
         if (!user) return
 
@@ -57,6 +59,7 @@ export default function ProtectedRouteEdit({ children }) {
         return null
     }
 
+    // Überprüft ob der eingeloggte User mit dem Ersteller des Kuchens übereinstimmt.
     if (cake.baker.id !== user.id) {
         return (
             <>

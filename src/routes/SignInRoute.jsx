@@ -4,6 +4,7 @@ import { saveSession } from "@/lib/session"
 import { redirect, useActionData } from "react-router"
 import { validateSignIn } from "@/lib/validateSignIn"
 
+// Holt sich die Daten aus dem Formular und Meldet den User an + Error Handling
 async function clientAction({ request }) {
     const formData = await request.formData()
     const user = Object.fromEntries(formData)

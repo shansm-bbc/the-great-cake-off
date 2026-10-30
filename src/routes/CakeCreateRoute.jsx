@@ -3,6 +3,7 @@ import CakeForm from "@/components/CakeForm"
 import { validateCake } from "@/lib/validateCake"
 import { createCake } from "@/lib/fetchCakes"
 
+// Holt sich die Daten aus dem Formular und erstellt anhand dieser informationen einen Kuchen
 async function clientAction({ request }) {
     const formData = await request.formData()
     const cake = Object.fromEntries(formData)
