@@ -1,14 +1,14 @@
 .authform {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
 }
 
 .buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .error {
-  color: firebrick;
+    color: firebrick;
 }
