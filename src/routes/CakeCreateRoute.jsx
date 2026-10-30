@@ -1,16 +1,17 @@
-import { redirect, useActionData, useNavigate } from "react-router"
+import { redirect, useActionData } from "react-router"
 import CakeForm from "@/components/CakeForm"
+import { validateCake } from "@/lib/validateCake"
+import { createCake } from "@/lib/fetchCakes"
 
-async function clientAction({ request, params }) {
+async function clientAction({ request }) {
     const formData = await request.formData()
-    const chronicle = Object.fromEntries(formData)
-
-    const { errors, isValid } = validateChronicle(chronicle)
+    const cake = Object.fromEntries(formData)
+    const { errors, isValid } = validateCake(cake)
     if (!isValid) {
         return errors
     }
-
-    await createChronicle(chronicle)
+    console.log(cake)
+    await createCake(cake)
     return redirect("/")
 }
 
